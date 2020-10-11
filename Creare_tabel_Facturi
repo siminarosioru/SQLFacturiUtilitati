@@ -1,0 +1,60 @@
+USE [Utilitati]
+GO
+
+/****** Object:  Table [dbo].[Facturi]    Script Date: 10/10/2020 5:02:29 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Facturi](
+	[codFactura] [nchar](10) NOT NULL,
+	[FacturaApa] [nchar](10) NULL,
+	[FacturaCurent] [nchar](10) NULL,
+	[FacturaGaz] [nchar](10) NULL,
+	[FacturaInternet] [nchar](10) NULL,
+	[codClient] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Facturi] PRIMARY KEY CLUSTERED 
+(
+	[codFactura] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Facturi]  WITH CHECK ADD  CONSTRAINT [FK_Facturi_Clienti] FOREIGN KEY([codClient])
+REFERENCES [dbo].[Clienti] ([codClient])
+GO
+
+ALTER TABLE [dbo].[Facturi] CHECK CONSTRAINT [FK_Facturi_Clienti]
+GO
+
+ALTER TABLE [dbo].[Facturi]  WITH CHECK ADD  CONSTRAINT [FK_Facturi_FacturaApa] FOREIGN KEY([FacturaApa])
+REFERENCES [dbo].[FacturaApa] ([FacturaApa])
+GO
+
+ALTER TABLE [dbo].[Facturi] CHECK CONSTRAINT [FK_Facturi_FacturaApa]
+GO
+
+ALTER TABLE [dbo].[Facturi]  WITH CHECK ADD  CONSTRAINT [FK_Facturi_FacturaCurent] FOREIGN KEY([FacturaCurent])
+REFERENCES [dbo].[FacturaCurent] ([FacturaCurent])
+GO
+
+ALTER TABLE [dbo].[Facturi] CHECK CONSTRAINT [FK_Facturi_FacturaCurent]
+GO
+
+ALTER TABLE [dbo].[Facturi]  WITH CHECK ADD  CONSTRAINT [FK_Facturi_FacturaGaz] FOREIGN KEY([FacturaCurent])
+REFERENCES [dbo].[FacturaGaz] ([FacturaGaz])
+GO
+
+ALTER TABLE [dbo].[Facturi] CHECK CONSTRAINT [FK_Facturi_FacturaGaz]
+GO
+
+ALTER TABLE [dbo].[Facturi]  WITH CHECK ADD  CONSTRAINT [FK_Facturi_FacturaInternet] FOREIGN KEY([FacturaInternet])
+REFERENCES [dbo].[FacturaInternet] ([FacturaInternet])
+GO
+
+ALTER TABLE [dbo].[Facturi] CHECK CONSTRAINT [FK_Facturi_FacturaInternet]
+GO
+
+
