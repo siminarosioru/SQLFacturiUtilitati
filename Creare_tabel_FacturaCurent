@@ -1,0 +1,29 @@
+USE [Utilitati]
+GO
+
+/****** Object:  Table [dbo].[FacturaCurent]    Script Date: 10/9/2020 3:08:36 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[FacturaCurent](
+	[FacturaCurent] [nchar](10) NOT NULL,
+	[codFactura] [nchar](10) NULL,
+	[sumaFacturaCurent] [real] NULL,
+ CONSTRAINT [PK_FacturaCurent] PRIMARY KEY CLUSTERED 
+(
+	[FacturaCurent] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[FacturaCurent]  WITH CHECK ADD  CONSTRAINT [FK_FacturaCurent_Facturi] FOREIGN KEY([codFactura])
+REFERENCES [dbo].[Facturi] ([codFactura])
+GO
+
+ALTER TABLE [dbo].[FacturaCurent] CHECK CONSTRAINT [FK_FacturaCurent_Facturi]
+GO
+
+
